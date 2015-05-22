@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+html, body{
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+form input, textarea{
+	@extend .form-control;
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
