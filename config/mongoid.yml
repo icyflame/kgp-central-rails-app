@@ -99,3 +99,11 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+production:
+  sessions:
+    default:
+      database: test-db
+      hosts:
+        - ds031892.mongolab.com:31892
+      username: siddharth
+      password: siddharth
