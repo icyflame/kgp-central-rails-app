@@ -3,7 +3,8 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable,
+  :omniauthable, :omniauth_providers => [:facebook]
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -29,6 +30,11 @@ class User
   # field :confirmation_sent_at, type: Time
   # field :unconfirmed_email,    type: String # Only if using reconfirmable
 
+  ## Omniauthable
+
+  field :provider, type: String
+  field :uid, type: String
+
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
@@ -37,4 +43,15 @@ class User
   field :phone, type: String
   field :rollnum, type: String
   field :hall, type: String
+
+  ## Omniauth Callback Function
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.phone = auth.info.phone
+    end
+  end
 end
