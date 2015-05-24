@@ -29,9 +29,11 @@ class AdvertisementController < ApplicationController
 
   	# render plain: new_ad.inspect
 
-  	new_ad.save
-
-  	render plain: "Saved!"
+  	if new_ad.save!
+      render plain: "Saved!"
+    else
+      render plain: "Could not be saved!"
+    end
 
   	# render plain: params.inspect
 
