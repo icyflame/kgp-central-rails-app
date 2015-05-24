@@ -10,9 +10,4 @@ class Advt
   	:accessories, :vehicles, :others]
   belongs_to :user
 
-  def self.find_for_mail_id(email)
-  	a = User.find_by(email: email.to_s).id
-  	t = Advt.find_by(user_id: a)
-  	return t
-  end
 end

@@ -41,8 +41,6 @@ class User
   # field :locked_at,       type: Time
   field :name, type: String
   field :phone, type: String
-  field :rollnum, type: String
-  field :hall, type: String
 
   ## Relation to Advertisements
 
