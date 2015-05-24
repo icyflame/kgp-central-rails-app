@@ -5,15 +5,14 @@
 	<div class="col-md-4">
 	</div>
 	<div class="col-md-4">
-		<form action="/post/ad/" method="POST">
-			<input type="hidden" name="authenticity_token" >
+		<%= form_tag("/post/ad", method: "post") do %>
 
 			<div class="form-group">
 				<input type="text" class="form-control" id="ad" name="title" placeholder="Ad Title">
 			</div>
 			<div class="form-group">
 				<select class="form-control" name="category">
-					<option value="Category" selected="selected" disabled="disabled">Category</option>
+					<option value="0" selected="selected" disabled="disabled">Category</option>
 					<option value="accessories">Accessories</option>
 					<option value="books">Books</option>
 					<option value="coupons">Coupons</option>
@@ -24,7 +23,7 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<input type="type" class="form-control" id="description" name="description" placeholder="Description">
+				<textarea type="text" class="form-control" id="description" name="description" placeholder="Description"></textarea>
 			</div>
 			<div class="form-group">
 				<select class="form-control" name="negotiable">
@@ -42,9 +41,24 @@
 			<div class="form-group">
 				<input type="type" class="form-control" id="mobile" name="mobile" placeholder="Mobile No:">
 			</div>
-			<button type="submit" class="btn btn-success">Submit</button>
-		</form>
+			<input type="submit" class="btn btn-success"></input>
+		<% end %> <!-- FORM end -->
 	</div>
 	<div class="col-md-4">
 	</div>
 </div>
+
+<script type="text/javascript">
+// Perform validation here
+
+$("input[type=submit]").on("click", function(e){
+
+	// TODO: Validate min length of the ad title, description, etc
+
+	if($("[name=category] option:selected").val().length <= 1){
+		alert("You have to fill up the category.");
+		e.preventDefault();
+	}
+});
+
+</script>

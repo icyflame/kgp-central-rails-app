@@ -55,17 +55,5 @@
 
 	<%= yield %>
 
-	<script type="text/javascript">
-	$(document).ready(function(){
-
-		// Fix the CSRF token for all forms.
-		if($("form").length >= 1){
-			$("input[name=authenticity_token]").each(function(){
-				$(this).attr("value", $("meta[name=csrf_token]").val());
-			})
-		}
-	})
-	</script>
-
 </body>
 </html>
