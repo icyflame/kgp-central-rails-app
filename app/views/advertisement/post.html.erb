@@ -7,41 +7,41 @@
 	<div class="col-md-4">
 		<%= form_tag("/post/ad", method: "post") do %>
 
-			<div class="form-group">
-				<input type="text" class="form-control" id="ad" name="title" placeholder="Ad Title">
-			</div>
-			<div class="form-group">
-				<select class="form-control" name="category">
-					<option value="0" selected="selected" disabled="disabled">Category</option>
-					<option value="accessories">Accessories</option>
-					<option value="books">Books</option>
-					<option value="coupons">Coupons</option>
-					<option value="electronics">Electronics</option>
-					<option value="furnitures">Furnitures</option>
-					<option value="vehicle">Bike/Scooty/Cycle</option>
-					<option value="others">Others</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<textarea type="text" class="form-control" id="description" name="description" placeholder="Description"></textarea>
-			</div>
-			<div class="form-group">
-				<select class="form-control" name="negotiable">
-					<option value="Category" selected="selected" disabled="disabled">Price Negotiable?</option>
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
-			</div>			
-			<div class="form-group">
-				<input type="link" class="form-control" id="link" name="url" placeholder="Relevant link">
-			</div>
-			<div class="form-group">
-				<input type="file" id="photo">
-			</div>
-			<div class="form-group">
-				<input type="type" class="form-control" id="mobile" name="mobile" placeholder="Mobile No:">
-			</div>
-			<input type="submit" class="btn btn-success"></input>
+		<div class="form-group">
+			<input type="text" class="form-control" id="ad" name="title" placeholder="Ad Title *">
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="category">
+				<option value="0" selected="selected" disabled="disabled">Category *</option>
+				<option value="accessories">Accessories</option>
+				<option value="books">Books</option>
+				<option value="coupons">Coupons</option>
+				<option value="electronics">Electronics</option>
+				<option value="furnitures">Furniture</option>
+				<option value="vehicle">Bike/Scooty/Cycle</option>
+				<option value="others">Others</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<textarea type="text" class="form-control" id="description" name="description" placeholder="Description *"></textarea>
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="negotiable">
+				<option value="Category" selected="selected" disabled="disabled">Price Negotiable?</option>
+				<option value="yes">Yes</option>
+				<option value="no">No</option>
+			</select>
+		</div>			
+		<div class="form-group">
+			<input type="link" class="form-control" id="link" name="url" placeholder="Relevant link">
+		</div>
+		<div class="form-group">
+			<input type="file" id="photo">
+		</div>
+		<div class="form-group">
+			<input type="type" class="form-control" id="mobile" name="mobile" placeholder="Mobile No:">
+		</div>
+		<input type="submit" class="btn btn-success"></input>
 		<% end %> <!-- FORM end -->
 	</div>
 	<div class="col-md-4">
@@ -53,10 +53,24 @@
 
 $("input[type=submit]").on("click", function(e){
 
-	// TODO: Validate min length of the ad title, description, etc
+	var text = "";
 
 	if($("[name=category] option:selected").val().length <= 1){
-		alert("You have to fill up the category.");
+		text += "Ad Category is a required field.\n";
+		e.preventDefault();
+	}
+
+	if($("[name=title]").val().length <= 5){
+		text += "Length of Ad Title must be atleast 5 characters\n";
+		e.preventDefault();
+	}
+
+	if($("[name=description]").val().length <= 5){
+		text += "Length of Ad Description must be atleast 5 characters\n";
+	}
+
+	if(text.length > 0){
+		alert(text);
 		e.preventDefault();
 	}
 });
