@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'advertisement/post'
+
+  get 'advertisement/showad'
+
+  get 'advertisement/viewall'
+
   get 'users/index'
 
   get 'users/show'
