@@ -44,6 +44,10 @@ class User
   field :rollnum, type: String
   field :hall, type: String
 
+  ## Relation to Advertisements
+
+  has_many :advts
+
   ## Omniauth Callback Function
 
   def self.from_omniauth(auth)
