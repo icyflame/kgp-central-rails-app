@@ -42,3 +42,4 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'mongoid'
 gem 'bson_ext'
+gem "mongoid-enum"
